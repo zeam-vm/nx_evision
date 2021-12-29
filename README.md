@@ -1,6 +1,6 @@
 # NxEvision
 
-**TODO: Add description**
+A bridge between [Nx](https://github.com/elixir-nx/nx) and [evision](https://github.com/cocoa-xu/evision).
 
 ## Installation
 
