@@ -5,9 +5,20 @@ defmodule NxEvision do
   and [evision](https://github.com/cocoa-xu/evision).
   """
 
-  @spec convert_nx_to_mat(Nx.t(), atom) :: {:ok, reference()} | {:error, String.t()}
+  @doc """
+  Converts a tensor of `Nx` to `Mat` of evision (OpenCV).
+
+  The tensor assumes to be `:RGB` color space.
+  """
+  @spec convert_nx_to_mat(Nx.t()) :: {:ok, reference()} | {:error, String.t()}
   def convert_nx_to_mat(t), do: convert_nx_to_mat(t, :RGB)
 
+  @doc """
+  Converts a tensor of `Nx` to `Mat` of evision (OpenCV).
+
+  The second parameter is a color space of the tensor(`:RGB`, `:BGR`, `:RGBA` or `:BGRA`.).
+  """
+  @spec convert_nx_to_mat(Nx.t(), atom) :: {:ok, reference()} | {:error, String.t()}
   def convert_nx_to_mat(nil, _), do: {:error, "tensor is nil"}
 
   def convert_nx_to_mat(t, colorspace) do
@@ -19,6 +30,7 @@ defmodule NxEvision do
     end
   end
 
+  @doc false
   @spec convert_nx_to_mat(
           binary(),
           {atom(), pos_integer()},
@@ -77,13 +89,23 @@ defmodule NxEvision do
     end
   end
 
-  @spec convert_mat_to_nx(reference, atom) :: {:ok, Nx.t()} | {:error, String.t()}
+  @doc """
+  Converts `Mat` of evision (OpenCV) to a tensor of `Nx`.
 
+  The tensor assumes to be `:RGB` color space.
+  """
+  @spec convert_mat_to_nx(reference) :: {:ok, Nx.t()} | {:error, String.t()}
   def convert_mat_to_nx(mat), do: convert_mat_to_nx(mat, :RGB)
 
+  @doc """
+  Converts `Mat` of evision (OpenCV) to a tensor of `Nx`.
+
+  The second parameter is a color space of the tensor(`:RGB`, `:BGR`, `:RGBA` or `:BGRA`.).
+  """
+  @spec convert_mat_to_nx(reference, atom) :: {:ok, Nx.t()} | {:error, String.t()}
   def convert_mat_to_nx(nil, _), do: {:error, "reference is nil"}
 
-  def convert_mat_to_nx(mat, :BGR) do
+  def convert_mat_to_nx(mat, _colorspace = :BGR) do
     case {OpenCV.Mat.type(mat), OpenCV.Mat.shape(mat), OpenCV.Mat.to_binary(mat)} do
       {{:ok, type}, {:ok, shape}, {:ok, binary}} ->
         {
