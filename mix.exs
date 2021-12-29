@@ -5,7 +5,7 @@ defmodule NxEvision.MixProject do
     [
       app: :nx_evision,
       version: "0.1.0",
-      elixir: "~> 1.13",
+      elixir: "~> 1.12-dev",
       start_permanent: Mix.env() == :prod,
       deps: deps()
     ]
