@@ -1,22 +1,35 @@
 # NxEvision
 
-**TODO: Add description**
+A bridge between [Nx](https://github.com/elixir-nx/nx) and [evision](https://github.com/cocoa-xu/evision).
 
 ## Installation
 
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `nx_evision` to your list of dependencies in `mix.exs`:
+In order to use `NxEvision`, you will need Elixir installed.
+Then create an Elixir project (in this case, it is named `my_app`, but you can rename it, freely.) via the mix build tool:
+
+```zsh
+mix new my_app
+```
+
+Then you can add `NxEvision` as dependency in your `mix.exs`.
+At the moment you will have to use a Git dependency while we work on our first release:
 
 ```elixir
 def deps do
   [
-    {:nx_evision, "~> 0.1.0"}
+    {:nx_evision, "~> 0.1.0-dev", github: "zeam-vm/nx_evision", branch: "main"}
   ]
 end
 ```
 
-Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
-and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
+You can generate Documentation with [ExDoc](https://github.com/elixir-lang/ex_doc), as follows:
+
+```zsh
+mix docs
+open doc/index.html
+```
+
+This document will be published on [HexDocs](https://hexdocs.pm). Once published, the docs can
 be found at <https://hexdocs.pm/nx_evision>.
 
 ## License
