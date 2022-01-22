@@ -42,7 +42,7 @@ defmodule NxEvision do
   def convert_nx_to_mat(binary, type, cols, rows, channels = 3, :RGB) do
     case OpenCV.Mat.from_binary(binary, type, cols, rows, channels) do
       {:ok, reference} ->
-        case OpenCV.cvtColor(reference, OpenCV.cv_COLOR_RGB2BGR()) do
+        case OpenCV.cvtcolor(reference, OpenCV.cv_color_rgb2bgr()) do
           {:ok, reference} -> {:ok, reference}
           {:error, reason} -> {:error, reason}
           _ -> {:error, 'unknown error when cvtColor'}
@@ -59,7 +59,7 @@ defmodule NxEvision do
   def convert_nx_to_mat(binary, type, cols, rows, channels = 4, :RGBA) do
     case OpenCV.Mat.from_binary(binary, type, cols, rows, channels) do
       {:ok, reference} ->
-        case OpenCV.cvtColor(reference, OpenCV.cv_COLOR_RGBA2BGRA()) do
+        case OpenCV.cvtcolor(reference, OpenCV.cv_color_rgba2bgra()) do
           {:ok, reference} -> {:ok, reference}
           {:error, reason} -> {:error, reason}
           _ -> {:error, 'unknown error when cvtColor'}
@@ -121,7 +121,7 @@ defmodule NxEvision do
   def convert_mat_to_nx(mat, :BGRA), do: convert_mat_to_nx(mat, :BGR)
 
   def convert_mat_to_nx(mat, :RGB) do
-    case OpenCV.cvtColor(mat, OpenCV.cv_COLOR_BGR2RGB()) do
+    case OpenCV.cvtcolor(mat, OpenCV.cv_color_bgr2rgb()) do
       {:ok, reference} -> convert_mat_to_nx(reference, :BGR)
       {:error, reason} -> {:error, reason}
       _ -> {:error, "Unknown error when cvtColor"}
@@ -129,7 +129,7 @@ defmodule NxEvision do
   end
 
   def convert_mat_to_nx(mat, :RGBA) do
-    case OpenCV.cvtColor(mat, OpenCV.cv_COLOR_BGRA2RGBA()) do
+    case OpenCV.cvtcolor(mat, OpenCV.cv_color_bgra2rgba()) do
       {:ok, reference} -> convert_mat_to_nx(reference, :BGRA)
       {:error, reason} -> {:error, reason}
       _ -> {:error, "Unknown error when cvtColor"}
