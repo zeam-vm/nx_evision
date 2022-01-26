@@ -27,7 +27,7 @@ Then, you will need to install them and to copy the following configuration file
 
 ```zsh
 mix deps.get
-cp -a deps/evision/config config/evision.exs
+cp -a deps/evision/config/config.exs config/evision.exs
 ```
 
 Finally, you will need to edit your `config.exs` to add the following fragment:
