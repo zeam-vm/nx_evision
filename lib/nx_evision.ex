@@ -51,8 +51,8 @@ defmodule NxEvision do
       {:error, reason} ->
         {:error, reason}
 
-      _ ->
-        {:error, 'unknown error when from_binary'}
+        # _ ->
+        #   {:error, 'unknown error when from_binary'}
     end
   end
 
@@ -68,24 +68,30 @@ defmodule NxEvision do
       {:error, reason} ->
         {:error, reason}
 
-      _ ->
-        {:error, 'unknown error when from_binary'}
+        # _ ->
+        #  {:error, 'unknown error when from_binary'}
     end
   end
 
   def convert_nx_to_mat(binary, type, rows, cols, channels = 3, :BGR) do
     case OpenCV.Mat.from_binary(binary, type, rows, cols, channels) do
-      {:ok, reference} -> {:ok, reference}
-      {:error, reason} -> {:error, reason}
-      _ -> {:error, 'unknown error when from_binary'}
+      {:ok, reference} ->
+        {:ok, reference}
+
+      {:error, reason} ->
+        {:error, reason}
+        # _ -> {:error, 'unknown error when from_binary'}
     end
   end
 
   def convert_nx_to_mat(binary, type, rows, cols, channels = 4, :BGRA) do
     case OpenCV.Mat.from_binary(binary, type, rows, cols, channels) do
-      {:ok, reference} -> {:ok, reference}
-      {:error, reason} -> {:error, reason}
-      _ -> {:error, 'unknown error when from_binary'}
+      {:ok, reference} ->
+        {:ok, reference}
+
+      {:error, reason} ->
+        {:error, reason}
+        # _ -> {:error, 'unknown error when from_binary'}
     end
   end
 
