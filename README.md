@@ -17,9 +17,23 @@ At the moment you will have to use a Git dependency while we work on our first r
 ```elixir
 def deps do
   [
-    {:nx_evision, "~> 0.1.0-dev", github: "zeam-vm/nx_evision", branch: "main"}
+    {:nx_evision, "~> 0.1.0-dev", github: "zeam-vm/nx_evision", branch: "main"},
+    {:evision, "~> 0.1.0-dev", github: "cocoa-xu/evision", branch: "main"}
   ]
 end
+```
+
+Then, you will need to install them and to copy the following configuration file:
+
+```zsh
+mix deps.get
+cp -a deps/evision/config config/evision.exs
+```
+
+Finally, you will need to edit your `config.exs` to add the following fragment:
+
+```elixir
+import_config "evision.exs"
 ```
 
 You can generate Documentation with [ExDoc](https://github.com/elixir-lang/ex_doc), as follows:
